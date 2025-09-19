@@ -501,28 +501,32 @@ async def cmd_set_start_media(m: Message):
     if not await require_admin_msg(m):
         return
 
+    target = m.reply_to_message
+    if not target:
+        return await m.answer("❗ لطفاً این دستور را روی پیام رسانه‌ای ریپلای کنید.")
+
     media = None
     media_type = None
 
-    if m.photo:
-        media = m.photo[-1].file_id
+    if target.photo:
+        media = target.photo[-1].file_id
         media_type = "photo"
-    elif m.video:
-        media = m.video.file_id
+    elif target.video:
+        media = target.video.file_id
         media_type = "video"
-    elif m.animation:
-        media = m.animation.file_id
+    elif target.animation:
+        media = target.animation.file_id
         media_type = "animation"
-    elif m.document:
-        media = m.document.file_id
+    elif target.document:
+        media = target.document.file_id
         media_type = "document"
-    elif m.sticker:
-        media = m.sticker.file_id
+    elif target.sticker:
+        media = target.sticker.file_id
         media_type = "sticker"
     else:
-        return await m.answer("❌ لطفاً یک رسانه معتبر ارسال کنید (عکس، ویدیو، گیف، فایل یا استیکر).")
+        return await m.answer("❌ پیام ریپلای‌شده باید یک رسانه معتبر باشد (عکس، ویدیو، گیف، فایل یا استیکر).")
 
-    caption = m.caption or ""
+    caption = target.caption or ""
 
     await db.execute("DELETE FROM start_media")
     await db.execute(
@@ -530,7 +534,7 @@ async def cmd_set_start_media(m: Message):
         media, media_type, caption
     )
 
-    await m.answer("✅ رسانه‌ی استارت با موفقیت ذخیره شد.")
+    await m.answer("✅ رسانه‌ی خوش‌آمدگویی با موفقیت ذخیره شد.")
 
 @dp.message(Command("whoami"))
 async def cmd_whoami(m: Message):
