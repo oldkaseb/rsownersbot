@@ -34,11 +34,11 @@ from aiogram.client.default import DefaultBotProperties
 
 # -------------------- Config & Logging --------------------
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s: %(message)s")
+OWNER_IDS =7662192190,6041119040
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 DATABASE_URL = os.getenv("DATABASE_URL")
 ADMIN_ID_RAW = os.getenv("ADMIN_ID", os.getenv("ADMIN_SEED_IDS", "")).strip()
 ADMIN_IDS_SEED = {int(n) for n in ADMIN_ID_RAW.replace(",", " ").split() if n.strip().isdigit()}
-OWNER_IDS =7662192190,6041119040
 if not BOT_TOKEN:
     raise RuntimeError("BOT_TOKEN env var is required")
 if not DATABASE_URL:
