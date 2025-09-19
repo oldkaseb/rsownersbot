@@ -1,0 +1,6 @@
+aiogram==3.4.1
+asyncpg==0.29.0         # اگر از PostgreSQL استفاده می‌کنی
+aiohttp==3.9.5
+python-dotenv==1.0.1    # برای خواندن ENV از فایل .env
+uvicorn==0.29.0         # برای اجرای ASGI در Railway
+fastapi==0.111.0        # اگر API هم داری یا برای health check
