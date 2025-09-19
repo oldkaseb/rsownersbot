@@ -1040,16 +1040,13 @@ async def private_fallback(m: Message, state: FSMContext):
 
 # -------------------- Entrypoint --------------------
 async def main():
-    global BOT_USERNAME, DB_POOL
-    await init_db()
+    global db, BOT_USERNAME
+    await init_db()         # اتصال به دیتابیس ساخته می‌شه
+    db = DB_POOL            # اینجا مقداردهی می‌شه تا در هندلرها قابل استفاده باشه
     me = await bot.get_me()
     BOT_USERNAME = me.username or ""
     logging.info(f"Bot connected as @{BOT_USERNAME}")
-    try:
-        await dp.start_polling(bot, allowed_updates=["message", "callback_query"])
-    finally:
-        if DB_POOL:
-            await DB_POOL.close()
+    await dp.start_polling(bot, allowed_updates=["message", "callback_query"])
 
 if __name__ == "__main__":
     import asyncio
