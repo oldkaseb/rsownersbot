@@ -222,6 +222,14 @@ async def upsert_user(m: Message):
                  username  =EXCLUDED.username""",
             m.from_user.id, m.from_user.first_name, m.from_user.last_name, m.from_user.username,
         )
+      
+async def get_owner_name(user_id: int) -> str:
+    if user_id == 7662192190:
+        return "کاسب"
+    elif user_id == 6041119040:
+        return "سیلور"
+    return "مالک"
+    await m.answer(f"سلام {get_owner_name(m.from_user.id)} عزیز، خوش آمدی!")
 
 async def upsert_user_profile(user_id: int, first_name: Optional[str], last_name: Optional[str], username: Optional[str]):
     assert DB_POOL is not None
@@ -376,14 +384,6 @@ def admin_reply_again_kb(user_id: int) -> InlineKeyboardMarkup:
 # -------------------- Helpers --------------------
 def is_owner(user_id: int) -> bool:
     return user_id in OWNER_IDS
-
-def get_owner_name(user_id: int) -> str:
-    if user_id == 7662192190:
-        return "کاسب"
-    elif user_id == 6041119040:
-        return "سیلور"
-    return "مالک"
-    await m.answer(f"سلام {get_owner_name(m.from_user.id)} عزیز، خوش آمدی!")
 
 def _normalize_fa(s: str) -> str:
     if not s:
