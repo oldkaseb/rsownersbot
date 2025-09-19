@@ -1052,9 +1052,11 @@ async def main():
             await DB_POOL.close()
 
 if __name__ == "__main__":
+    import asyncio
     try:
         asyncio.run(main())
     except (KeyboardInterrupt, SystemExit):
         print("Bot stopped.")
+
 
 
