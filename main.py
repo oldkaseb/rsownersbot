@@ -520,7 +520,7 @@ async def cmd_set_start_media(m: Message):
         media = m.sticker.file_id
         media_type = "sticker"
     else:
-        return await m.answer("❌ لطفاً یک رسانه معتبر ارسال کنید (عکس، ویدیو، گیف، فایل یا استیکر).")
+        return await m.answer("❌ لطفاً یک رسانه معتبر ارسال کنید...")
 
     caption = m.caption or ""
 
