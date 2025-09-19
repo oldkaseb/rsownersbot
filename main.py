@@ -383,7 +383,7 @@ def get_owner_name(user_id: int) -> str:
     elif user_id == 6041119040:
         return "سیلور"
     return "مالک"
-          await m.answer(f"سلام {get_owner_name(m.from_user.id)} عزیز، خوش آمدی!")
+    await m.answer(f"سلام {get_owner_name(m.from_user.id)} عزیز، خوش آمدی!")
 
 def _normalize_fa(s: str) -> str:
     if not s:
