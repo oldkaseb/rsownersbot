@@ -393,7 +393,7 @@ def _normalize_fa(s: str) -> str:
 
 def contains_malek(text: str) -> bool:
     t = _normalize_fa(text or "")
-    return any(word in t for word in ["راینو", "راینوسول", "سول", "خدمات", "تیم", "برنامه نویس"])
+    return any(word in t for word in ["راینو", "راینوسول", "خدمات", "برنامه نویس"])
 
 async def disable_markup(call: CallbackQuery):
     try:
